@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity(name = "Class")
 @Table(name = "Class")
@@ -109,9 +108,5 @@ public class ClassEntity {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Optional<Object> stream() {
-        return null;
     }
 }

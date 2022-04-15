@@ -25,29 +25,26 @@ public class StudentService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ResponseEntity<?> create(StudentEntity studentEntity) {
-        //lưu thông tin vào db
-        StudentEntity studentEntity1 = studentMapper.createStudent(studentRepositories.save(studentEntity));
-        //trả ra thông tin
-        return new ResponseEntity<>(studentEntity1, HttpStatus.OK);
-    }
-
+    //sửa thông tin trong db theo id
     public ResponseEntity<?> update(long id, StudentIn studentIn) {
         //lấy thông tin từ trong db
         StudentEntity studentEntity = studentRepositories.findAllById(id);
+        //chuyển đổi thực thể thành dto
+        StudentDto studentDto = modelMapper.map(studentEntity, StudentDto.class);
         //kiểm tra nếu ko có thì trả ra kq
         if (studentEntity == null)
             return new ResponseEntity<>("không có bản ghi nào", HttpStatus.BAD_REQUEST);
         //cập nhập dữ liệu bản ghi
-        studentMapper.updateStudent(studentEntity, studentIn);
+        studentMapper.updateStudent(studentDto, studentIn);
         //lưu thông tin vào db
         studentRepositories.save(studentEntity);
         return new ResponseEntity<>("Sửa thành công", HttpStatus.OK);
     }
 
+    //xoa thông tin theo id
     public ResponseEntity<?> delete(long id) {
         try {
-            //lấy thông tin trong db
+            //xóa thông tin trong db
             studentRepositories.deleteById(id);
             return new ResponseEntity<>("xóa thành công", HttpStatus.OK);
         } catch (Exception e) {
@@ -57,28 +54,34 @@ public class StudentService {
         }
     }
 
-    public ResponseEntity<?> classEnter(String lop) {
+    //lấy thong tin của một sinh viên theo lop
+    public ResponseEntity<?> getClassInfo(String lop) {
         //lấy thông tin trong db
         List<StudentEntity> studentEntities = studentRepositories.findAllByMalop(lop);
         //ktra lếu ko có thì trả ra kq
         if (studentEntities == null)
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("không có thông tin nào", HttpStatus.BAD_REQUEST);
         List<StudentEntity> studentEntities1 = studentEntities.stream()
                 .filter(s -> Boolean.parseBoolean(s.getMalop()))
                 .collect(Collectors.toList());
         modelMapper.map(studentEntities1, StudentDto.class);
-        return new ResponseEntity<>(studentEntities, HttpStatus.OK);
+        StudentOut studentOut = new StudentOut();
+        studentOut.setData(studentEntities);
+        return new ResponseEntity<>(studentOut, HttpStatus.OK);
     }
 
+    //lấy thông tin của một sinh viên theo id
     public ResponseEntity<?> getInfoStudent(long id) {
         //lấy thông tin từ trong db
         StudentEntity studentEntity = studentRepositories.findAllById(id);
-        StudentDetailDTO studentDetailDTO = new StudentDetailDTO();
+        //chuyển đổi thực thể thành DTO
+        StudentIn studentIn = modelMapper.map(studentEntity, StudentIn.class);
+        StudentDetailDTO studentDetailDTO = modelMapper.map(studentEntity, StudentDetailDTO.class);
         //ktra lếu ko có thì trả ra kq
-        if(studentEntity == null)
-            return new ResponseEntity<>("không có thông tin nào cả!",HttpStatus.BAD_REQUEST);
+        if (studentEntity == null)
+            return new ResponseEntity<>("không có thông tin nào cả!", HttpStatus.BAD_REQUEST);
         //cập nhật dữ liệu bản ghi
-        studentMapper.MoreInfoStudent(studentEntity, studentDetailDTO);
+        studentMapper.moreInfoStudent(studentDetailDTO, studentIn);
         StudentOut studentOut = new StudentOut();
         studentOut.setData(studentDetailDTO);
         return new ResponseEntity<>(studentOut, HttpStatus.OK);

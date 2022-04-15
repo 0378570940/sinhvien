@@ -1,11 +1,8 @@
 package com.example.demo.models.dto;
 
-import com.example.demo.models.out.StudentOut;
+import java.util.Date;
 
-import javax.persistence.Column;
-import java.util.*;
-
-public class StudentDto  {
+public class StudentDto {
     private String name;
     private Date birthday;
     private String address;
@@ -13,15 +10,17 @@ public class StudentDto  {
     private String interests;
     private String facebook;
     private String gender;
-    private String malop;
+    private String maLop;
     private String lop;
     private String giaovien;
     private String dtb;
+    private String fullName;
+    private String gmail;
 
     public StudentDto() {
     }
 
-    public StudentDto(long id, String name, Date birthday, String address, String phoneNumber, String interests, String facebook, String gender, String malop, String lop, String giaovien, String dtb) {
+    public StudentDto(String name, Date birthday, String address, String phoneNumber, String interests, String facebook, String gender, String maLop, String lop, String giaovien, String dtb, String fullName, String gmail) {
         this.name = name;
         this.birthday = birthday;
         this.address = address;
@@ -29,18 +28,36 @@ public class StudentDto  {
         this.interests = interests;
         this.facebook = facebook;
         this.gender = gender;
-        this.malop = malop;
+        this.maLop = maLop;
         this.lop = lop;
         this.giaovien = giaovien;
         this.dtb = dtb;
+        this.fullName = fullName;
+        this.gmail = gmail;
     }
 
-    public String getMalop() {
-        return malop;
+    public String getMaLop() {
+        return maLop;
     }
 
-    public void setMalop(String malop) {
-        this.malop = malop;
+    public void setMaLop(String maLop) {
+        this.maLop = maLop;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
 
     public String getGiaovien() {

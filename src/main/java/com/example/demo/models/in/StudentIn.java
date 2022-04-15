@@ -1,10 +1,8 @@
 package com.example.demo.models.in;
 
-import com.example.demo.models.dto.ClassDto;
-
 import java.util.Date;
 
-public class StudentIn  {
+public class StudentIn {
     private long id;
     private String name;
     private Date birthday;

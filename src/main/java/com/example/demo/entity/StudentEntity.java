@@ -9,7 +9,7 @@ import java.util.Date;
 @Table(name = "Student")
 public class StudentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "Name")
     private String name;
@@ -33,8 +33,28 @@ public class StudentEntity {
     private String giaovien;
     @Column(name = "dtb")
     private String dtb;
+    @Column(name = "fullname")
+    private String fullName;
+    @Column(name = "gmail")
+    private String gmail;
 
     public StudentEntity() {
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
     }
 
     public String getGiaovien() {

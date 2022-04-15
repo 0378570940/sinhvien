@@ -2,7 +2,7 @@ package com.example.demo.models.dto;
 
 import java.util.Date;
 
-public class StudentDetailDTO extends StudentDto{
+public class StudentDetailDTO extends StudentDto {
     private long id;
     private String name;
     private String malop;
@@ -15,10 +15,6 @@ public class StudentDetailDTO extends StudentDto{
     private String gmail;
 
     public StudentDetailDTO() {
-    }
-
-    public StudentDetailDTO(long id, String name, Date birthday, String address, String phoneNumber, String interests, String facebook, String gender, String malop, String lop, String giaovien, String dtb) {
-        super(id, name, birthday, address, phoneNumber, interests, facebook, gender, malop, lop, giaovien, dtb);
     }
 
     public StudentDetailDTO(long id, String name, String malop, String phoneNumber, String facebook, String address, String giaovien, String dtb, String fullname, String gmail) {
@@ -34,18 +30,18 @@ public class StudentDetailDTO extends StudentDto{
         this.gmail = gmail;
     }
 
-    public StudentDetailDTO(long id, String name, Date birthday, String address, String phoneNumber, String interests, String facebook, String gender, String malop, String lop, String giaovien, String dtb, long id1, String name1, String malop1, String phoneNumber1, String facebook1, String address1, String giaovien1, String dtb1, String fullname, String gmail) {
-        super(id, name, birthday, address, phoneNumber, interests, facebook, gender, malop, lop, giaovien, dtb);
-        this.id = id1;
+    public StudentDetailDTO(String name, Date birthday, String address, String phoneNumber, String interests, String facebook, String gender, String maLop, String lop, String giaovien, String dtb, String fullName, String gmail, long id, String name1, String malop, String phoneNumber1, String facebook1, String address1, String giaovien1, String dtb1, String fullname, String gmail1) {
+        super(name, birthday, address, phoneNumber, interests, facebook, gender, maLop, lop, giaovien, dtb, fullName, gmail);
+        this.id = id;
         this.name = name1;
-        this.malop = malop1;
+        this.malop = malop;
         this.phoneNumber = phoneNumber1;
         this.facebook = facebook1;
         this.address = address1;
         this.giaovien = giaovien1;
         this.dtb = dtb1;
         this.fullname = fullname;
-        this.gmail = gmail;
+        this.gmail = gmail1;
     }
 
     public long getId() {
@@ -66,12 +62,10 @@ public class StudentDetailDTO extends StudentDto{
         this.name = name;
     }
 
-    @Override
     public String getMalop() {
         return malop;
     }
 
-    @Override
     public void setMalop(String malop) {
         this.malop = malop;
     }

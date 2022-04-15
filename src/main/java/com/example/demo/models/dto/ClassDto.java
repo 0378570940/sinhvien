@@ -1,12 +1,5 @@
 package com.example.demo.models.dto;
 
-import com.example.demo.models.out.StudentOut;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-
 public class ClassDto {
     private long id;
     private String name;
